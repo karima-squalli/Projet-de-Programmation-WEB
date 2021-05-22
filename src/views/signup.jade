@@ -1,0 +1,33 @@
+extends layout
+block body
+    div.row
+        div.container-fluid.col-6
+            h4.mt-5.px-5.text-success.text-center.pt-5 Avec Read-It trouvez votre communauté, partagez avec votre entourage et votez pour vos liens préférés!!
+            img.mr-5.mt-5.img-fluid(src="images/jeunes2.png",alt="photo de jeunes", title="photo de jeunes", class="rounded mx-auto d-block")
+        div.container.col-6
+                if !signed_up
+                    h2.text-danger.mt-5.mb-3.pl-3.s-1.col-6 Incris-toi, c'est gratuit!
+                    if errors
+                        div.p-2.alert.alert-danger
+                            h4=errors
+                    form.p-3.mt-5(method="POST" action="/signup")
+                        div.p-2.col
+                            label(for="username") 
+                                input(type="text" id="username" name="username" placeholder="pseudo")
+                        div.p-2.col
+                            label(for="mail")
+                                input(type="text" id="mail" name="mail" placeholder="adresse mail (gmail uniquement)")
+                        div.p-2.col
+                            label(for="password")
+                                input(type="password" id="password" name="password" placeholder="mot de passe")
+                        div.p-2.col
+                            label(for="password_confirm")
+                                input(type="password" id="password_confirm" name="password_confirm" placeholder="confimation de mot de passe")
+                        div.p-2.mt-3.mr-3.text-muted.fst-italic En appuyant sur s'inscrire, vous recevrez peut-être des notifications par mail de notre part. Vous pouvez à tout moment vous désabonner.
+                        button.btn-success.m-4.mt-3(type="submit") S'inscrire
+                    form.p-3.mt-4.pl-5(method="POST" action="/")
+                        button.btn-light.mt-3(type="submit" value="signup") Vous avez un compte? Connectez-vous.
+                else 
+                    div Vous êtes inscrit ! 
+                        form(method="POST" action="/")
+                            input(type="submit" value="Retour à la page d'identification")

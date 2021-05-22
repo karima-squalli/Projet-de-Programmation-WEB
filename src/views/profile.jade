@@ -1,0 +1,35 @@
+extends layout
+block body
+    if logged
+        div.container.justify-content-center.d-flex.mt-5
+                div.col
+                    img.pb-5(src="images/profil.jpg",alt="photo de profil",sizes="min-width:50px" 50vw, title="photo de profil")
+                div.row.mt-5
+                    div.col
+                        h5=pseudo
+                        if identifiants      
+                            h3.text-success.fw-bold Pseudo :
+                            h4=user
+                            h3.text-success.fw-bold Adresse-mail :
+                            h4=address
+            div.container.mt-5
+                if liens
+                    h3.text-danger.pt-5 Liens partagés : 
+                    ul
+                        each lien in liens 
+                            li
+                                h5=lien
+             
+
+                if all_comments 
+                    h3.text-danger.pt-5 Liens commentés : 
+                    ul
+                        each com, index in all_comments 
+                            li.pt-3
+                                | Vous avez commenté : "
+                                span.fw-bold=com.commentaire_contenu 
+                                | " sous le lien publié par 
+                                span.fw-bold= com.lien_pseudo 
+                                | : "
+                                span.fw-bold= com.lien_contenu 
+                                | ".

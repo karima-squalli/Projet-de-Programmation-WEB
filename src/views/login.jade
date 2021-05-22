@@ -1,0 +1,35 @@
+extends layout
+block body
+    if !logged
+        div.jumbotron.mt-5(style="height: 180px; background-image: url('/images/jeunes.jpeg');")
+        div.container  
+            h4.text-danger.mt-5.mb-3.pl-3.fs-1.text-center Connecte-toi !
+            if errors
+                div.p-2.alert.alert-danger
+                    h4.text-center=errors
+            form.text-center(method="POST" action="/")
+                div.p-2.col
+                    label(for="adresse mail")   
+                        input(type="text" id="mail" name="mail" placeholder="adresse mail")
+                div.p-2.col
+                    label(for="mot de passe")
+                        input(type="password" id="password" name="password" placeholder="mot de passe")
+                button.btn-success.mt-3(type="submit" value="login") Login
+            form.text-center(method="POST" action="/signup")
+                button.btn-light.mt-5(type="submit" value="signup") Vous n'êtes pas inscrit? Créez un nouveau compte.
+            
+    else 
+        div.container.p-5.m-5 
+            h3
+                | Bienvenue 
+                span.fst-italic=user 
+                |  sur 
+                span.text-danger Read-it
+                | !
+            h4.nav-item.p-5.m-5
+                | Visitez :
+                ul 
+                    li
+                        a.text-success.fst-italic.nav-link(href="/home" class="") Votre page d'accueil.
+                    li
+                        a.text-success.fst-italic.nav-link(href="/profile" class="") Votre profil.

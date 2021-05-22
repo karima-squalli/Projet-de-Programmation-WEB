@@ -1,0 +1,24 @@
+doctype html 
+html(lang="en")
+    head
+        title Read-it
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous")
+        link(href="/style/main.css" rel="stylesheet" type="text/css")
+        link(rel="shortcut icon" href="/images/logo.ico")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+        script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js")
+
+    body 
+        div.row.align-items-center.py-2
+            div.col-1
+            a(class="lienImage img-responsive" href="http://localhost:3000/")
+                img(src="images/logo.png",alt="logo", width="140px", title="home", height="60px", class="img-responsive")                       
+            if logged
+                div.col.d-flex.justify-content-end
+                    form.pb-5(method="POST" action="/home")
+                        button.btn-outline-danger.btn-lg(type="submit") Accueil
+                    form.pb-5(method="POST" action="/profile")
+                        button.btn-outline-danger.btn-lg(type="submit") Profil
+                    form.pb-5(method="POST" action="/logout")
+                        button.btn-outline-danger.btn-lg(type="submit") Déconnexion
+    block body

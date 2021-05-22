@@ -1,0 +1,35 @@
+extends layout
+block body
+    if logged 
+        if !posted
+            div.row
+                div.container.col-6
+                    h3 
+                        | Bonjour,  
+                        span.text-danger=user
+                        |  ! Exprimez-vous. :)
+                    form.m-4.mb-1(method="POST" action="/home")
+                        div
+                            label(for="Partager un lien.")   
+                                input(type="text" id="link" name="link" placeholder="Partager un lien.")
+                            button.btn-success.mt-3(type="submit" value="share") Publier
+                
+                    h2.mt-5.pt-1.pr-1.text-danger Liens à la une 
+                    if links
+                        ul.pt-2
+                            each link, index in links 
+                                li.nav-item 
+                                    span.fw-bold=link.lien_pseudo 
+                                    |  a publié le lien : "
+                                    a.link-primary.fw-bold=link.lien_contenu 
+                                    | ".
+                                    form(action="/link/" + link.lien_id method="POST")
+                                        input(type="Submit" value="Appuyer pour visualiser les commentaires ou commenter le lien.")
+                div.jumbotron.m-5.p-5.col-6(style="height: 345px; width: 345px; background-image: url('/images/jeunes3.png');")
+
+        else
+            div.container
+                div.alert.alert-success
+                    h3.text-center Votre lien a été publié avec succès ! 
+                form.text-center(method="POST" action="/home")
+                    input(type="submit" value="Retour à la page d'accueil")

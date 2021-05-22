@@ -1,0 +1,32 @@
+extends layout
+block body
+    if logged
+        div.container.p-5.m-5
+            if commented
+                div.alert.alert-success
+                    h3.text-center.pt-3 Votre commentaire a été publié avec succès ! 
+                form.text-center(method="POST" action="/link/" + id)
+                    button.btn-light.mt-5(type="submit") Retour au lien
+            else
+                if link_user
+                    p 
+                        span.fw-bold=link_user
+                        |  a publié le lien : "
+                        a.link-primary.fw-bold=link_content
+                        | ".
+                if link_comments
+                    each param, index in link_comments
+                        li.mx-3
+                            span.fw-bold= param.commentaire_pseudo
+                            |  a commenté :
+                            span.fw-bold=param.commentaire_contenu
+                form.m-4.mb-1(method="POST" action="/link/" + id)
+                    div
+                        label(for="Ajouter un commentaire.")
+                            input(type="text" id="comment" name="comment" placeholder="Ajouter un commentaire.")
+                        button.btn-success.mt-3(type="submit" value="share") Commenter
+           
+
+        
+
+
